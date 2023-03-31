@@ -6,7 +6,7 @@ import { Card, Spinner } from 'react-bootstrap';
 const Post = () => {
     let { uId } = useParams();
     const {user,post,getUserPost} =useUser()
-     console.log("post",post)
+    
      useEffect(() => {
         
         getUserPost(uId)
@@ -27,11 +27,11 @@ const Post = () => {
         </Card>
     <h4 className='text-center my-3'>Posts:</h4> <br />
     { post.posts ?
-      ( post.posts.length>0 ? post.posts?.map(post =><Card className='my-2 mx-2' >
+      ( post.posts.length>0 ? post.posts?.map(post =><Card key={post.id} className='my-2 mx-2' >
             <Card.Body>
-                <Card.Title>title: {post.title}  </Card.Title>
+                <Card.Title> {post.title}  </Card.Title>
                 <Card.Text>
-                body: {post.body}
+                 {post.body}
                 </Card.Text>
             </Card.Body>
             </Card>)

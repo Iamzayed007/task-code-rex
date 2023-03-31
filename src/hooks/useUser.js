@@ -15,12 +15,12 @@ const useUser =()=>{
         fetch(`https://dummyjson.com/users/${id}`)
         .then(res => res.json())
         .then(data =>{setUser(data)
-            console.log(data)
+           
         })
         fetch(`https://dummyjson.com/users/${id}/posts`)
         .then(res => res.json())
         .then(data =>{setPost(data)
-            console.log(data)
+            
         })
     }
 return{
