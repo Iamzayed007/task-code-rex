@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import useUser from './hooks/useUser';
-import { Card } from 'react-bootstrap';
+import { Card, Spinner } from 'react-bootstrap';
 
 const Post = () => {
     let { uId } = useParams();
-    const {user,post,getAllUsers,getUserPost} =useUser()
-    // const {firstName,lastName,email,company,id}=users
-    //  console.log("userIs",uId)
+    const {user,post,getUserPost} =useUser()
      console.log("post",post)
      useEffect(() => {
+        
         getUserPost(uId)
       
        
@@ -27,8 +26,8 @@ const Post = () => {
         </Card.Body>
         </Card>
     <h4 className='text-center my-3'>Posts:</h4> <br />
-    {
-        post.posts?.map(post =><Card className='my-2 mx-2' >
+    { post.posts ?
+      ( post.posts.length>0 ? post.posts?.map(post =><Card className='my-2 mx-2' >
             <Card.Body>
                 <Card.Title>title: {post.title}  </Card.Title>
                 <Card.Text>
@@ -36,6 +35,9 @@ const Post = () => {
                 </Card.Text>
             </Card.Body>
             </Card>)
+            :
+            <div className='text-center'><p> {user?.firstName+' '+user?.lastName} has not post anything yet</p></div>)
+            :  <div className='text-center'> <Spinner animation="border" variant="primary" /></div>
     }
     </div>
   )
